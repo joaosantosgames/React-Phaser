@@ -2,21 +2,30 @@
 // A sprite sheet (art1.jpg) tem 1800px × 1200px
 // Cada célula ocupa 200px de largura × 240px de altura
 // A primeira coluna contém apenas os rótulos (IDLE, WALK, etc.), por isso firstFrameX começa em 200
-const frameWidth = 200;       // largura de cada quadro da sprite
-const frameHeight = 240;      // altura de cada quadro da sprite
-const firstFrameX = 200;      // posição X inicial do primeiro frame útil (pula a coluna de rótulos)
+// Cálculo da posição do frame na sprite sheet:
+// Posição X = -(firstFrameX + currentFrame * frameStepX)
+// Posição Y = -(linha * frameHeight)
+//
+// Onde:
+// firstFrameX = 200 (pula a coluna de rótulos)
+// frameStepX = frameWidth = 200px (largura de cada frame)
+// frameHeight = 240px (altura de cada frame)
+// linha = índice da linha (0 para idle, 1 para walk, ...)
+const frameWidth = 193;       // largura de cada quadro da sprite
+const frameHeight = 210;      // altura de cada quadro da sprite
+const firstFrameX = 193;      // posição X inicial do primeiro frame útil (pula a coluna de rótulos)
 const frameStepX = frameWidth;// distância horizontal entre quadros (igual à largura do quadro)
-const animationSpeed = 180;   // tempo em milissegundos entre cada troca de quadro
+const animationSpeed = 160;   // tempo em milissegundos entre cada troca de quadro
 
 // Mapeamento dos estados com base na sprite sheet
 // Cada estado corresponde a uma linha da imagem
 // 'rowY' indica a posição vertical (em px) onde começa a linha de animação (múltiplos de 240)
 const animations = {
     idle:   { rowY: 0,    totalFrames: 6 },  // linha do personagem parado
-    walk:   { rowY: 240,  totalFrames: 8 },  // linha do personagem andando
-    run:    { rowY: 480,  totalFrames: 8 },  // linha do personagem correndo
-    jump:   { rowY: 720,  totalFrames: 8 },  // linha do personagem pulando
-    attack: { rowY: 960,  totalFrames: 4 }   // linha do personagem atacando
+    walk:   { rowY: 220,  totalFrames: 8 },  // linha do personagem andando
+    run:    { rowY: 460,  totalFrames: 8 },  // linha do personagem correndo
+    jump:   { rowY: 670,  totalFrames: 8 },  // linha do personagem pulando
+    attack: { rowY: 878,  totalFrames: 4 }   // linha do personagem atacando
 };
 
 // Estado inicial do personagem

@@ -13,7 +13,7 @@ body {
 
 /* Container principal que agrupa palco do sprite e controles */
 .container {
-    width: min(100%, 900px);        /* Largura máxima de 900px, adaptando a telas menores */
+    width: min(100%, 640px);        /* Largura máxima de 900px, adaptando a telas menores */
     display: flex;                  /* Organiza os filhos em coluna */
     flex-direction: column;
     align-items: center;            /* Centraliza os itens horizontalmente */
@@ -23,9 +23,9 @@ body {
 
 /* Palco (área de exibição) do sprite animado */
 .sprite-stage {
-    --sprite-scale: 2;              /* Fator de escala do sprite (2x o tamanho original) */
-    width: calc(200px * var(--sprite-scale));  /* Largura do palco = frame × escala */
-    height: calc(240px * var(--sprite-scale)); /* Altura do palco  = frame × escala */
+    --sprite-scale: 1;              /* Fator de escala do sprite (2x o tamanho original) */
+    width: calc(192px * var(--sprite-scale));  /* Largura do palco = frame × escala */
+    height: calc(210px * var(--sprite-scale)); /* Altura do palco  = frame × escala */
     display: flex;                  /* Flexbox para centralizar o sprite-box dentro do palco */
     align-items: center;
     justify-content: center;
@@ -35,14 +35,14 @@ body {
 
 /* Caixa que contém a sprite sheet como fundo e exibe um frame por vez */
 #sprite-box {
-    width: 200px;                   /* Largura original de cada frame */
-    height: 240px;                  /* Altura original de cada frame */
+    width: 260px;                   /* Largura original de cada frame */
+    height: 200px;                  /* Altura original de cada frame */
     flex-shrink: 0;
 
     background-image: url('../image/art1.jpg');  /* Caminho da sprite sheet */
     background-repeat: no-repeat;               /* Evita repetição da imagem */
     background-size: 1800px 1200px;             /* Tamanho original da sprite sheet (largura × altura) */
-    background-position: 0px 0px;               /* Posição inicial, alterada pelo JS */
+    background-position: -192px 0px;               /* Posição inicial, alterada pelo JS */
 
     image-rendering: pixelated;                 /* Mantém bordas nítidas no pixel art */
     transform: scale(var(--sprite-scale));      /* Aumenta o sprite visualmente */

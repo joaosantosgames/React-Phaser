@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Palco de Sprites — editor e animador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>Palco de <span>Sprites</span></h1>
+  <p>Carregue uma spritesheet, ajuste o recorte e os estados de animação, e interaja com o personagem pelo teclado ou pelos controles na tela.</p>
+</header>
+
+<div class="app">
+  <!-- STAGE -->
+  <div class="stage-shell">
+    <div class="panel">
+      <div class="stage-frame">
+        <canvas id="stage" width="900" height="500" role="img" aria-label="Palco de animação do sprite"></canvas>
+        <div class="hud mono" id="hud" aria-live="polite"></div>
+        <div class="preview-banner" id="previewBanner">
+          <div class="box">
+            <span>Pré-visualizando animação — controles pausados</span>
+            <button id="exitPreviewBtn">sair</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <!-- GAMEPAD MELHORADO -->
+      <div class="gamepad" role="group" aria-label="Controles do personagem">
+        <div class="dpad">
+          <button class="btn dir" id="btnLeft" aria-label="Mover para esquerda">◄</button>
+          <div class="dpad-center"></div>
+          <button class="btn dir" id="btnRight" aria-label="Mover para direita">►</button>
+        </div>
+        <div class="action-group">
+          <button class="btn action" id="btnJump" aria-label="Pular">Pular</button>
+          <button class="btn action attack" id="btnAttack" aria-label="Atacar">Atacar</button>
+          <button class="btn toggle" id="btnRun" aria-label="Segurar para correr" aria-pressed="false">Correr</button>
+          <button class="btn stop" id="btnStop" aria-label="Parar personagem">Parar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar panel">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="sprite" role="tab" aria-selected="true">sprite</button>
+      <button class="tab-btn" data-tab="animacoes" role="tab" aria-selected="false">animações</button>
+      <button class="tab-btn" data-tab="ajuda" role="tab" aria-selected="false">atalhos</button>
+    </div>
+
+    <!-- SPRITE TAB -->
+    <div class="tab-content active" id="tab-sprite" role="tabpanel">
+      <label class="file-btn">
+        enviar spritesheet (imagem em grade)
+        <input type="file" id="fileInput" accept="image/*">
+      </label>
+
+      <div class="row2">
+        <div class="field">
+          <label>largura do frame (px) <span class="val" id="valFrameW"></span></label>
+          <input type="number" id="frameW" min="4" step="1">
+        </div>
+        <div class="fieldA">
+          <label>altura do frame (px) <span class="val" id="valFrameH"></span></label>
+          <input type="number" id="frameH" min="4" step="1">
+        </div>
+      </div>
+      <div class="field">
+        <label>grade detectada</label>
+        <input type="text" id="gridInfo" class="mono" readonly>
+      </div>
+
+      <div class="field">
+        <label>escala <span class="val" id="valScale"></span></label>
+        <input type="range" id="scale" min="0.5" max="8" step="0.1">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>ponto de apoio X <span class="val" id="valAnchorX"></span></label>
+          <input type="range" id="anchorX" min="0" max="1" step="0.01">
+        </div>
+        <div class="field">
+          <label>ponto de apoio Y <span class="val" id="valAnchorY"></span></label>
+          <input type="range" id="anchorY" min="0" max="1" step="0.01">
+        </div>
+      </div>
+      <label class="checkline">
+        <input type="checkbox" id="flipBase">
+        a arte original olha para a esquerda
+      </label>
+
+      <button class="add-btn" id="resetDemoBtn">restaurar sprite de demonstração</button>
+
+      <div class="export-row">
+        <button class="btn" id="exportBtn">exportar config</button>
+        <label class="btn" style="text-align:center; cursor:pointer;">
+          importar config
+          <input type="file" id="importInput" accept="application/json" style="display:none;">
+        </label>
+      </div>
+    </div>
+
+    <!-- ANIMATIONS TAB -->
+    <div class="tab-content" id="tab-animacoes" role="tabpanel">
+      <div class="section-title">estados principais</div>
+      <div id="coreAnimList"></div>
+
+      <div class="section-title">animações extras</div>
+      <div id="customAnimList"></div>
+      <button class="add-btn" id="addCustomBtn">+ nova animação extra</button>
+    </div>
+
+    <!-- HELP TAB -->
+    <div class="tab-content" id="tab-ajuda" role="tabpanel">
+      <div class="help-list">
+        <div class="help-item"><span class="keycap">A</span><span class="keycap">◀</span><p>Move o personagem para a esquerda (estado <b>andar</b>).</p></div>
+        <div class="help-item"><span class="keycap">D</span><span class="keycap">▶</span><p>Move o personagem para a direita (estado <b>andar</b>).</p></div>
+        <div class="help-item"><span class="keycap">Shift</span><p>Segure junto com um direcional para <b>correr</b>.</p></div>
+        <div class="help-item"><span class="keycap">Espaço</span><span class="keycap">W</span><p>Faz o personagem <b>pular</b>.</p></div>
+        <div class="help-item"><span class="keycap">J</span><span class="keycap">Ctrl</span><p>Dispara o estado de <b>ataque</b>.</p></div>
+        <div class="help-item"><p>Os mesmos comandos existem como botões abaixo do palco (suporte a toque).</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>palco de sprites — protótipo local</footer>
+<script src="js/script.js"></script>
