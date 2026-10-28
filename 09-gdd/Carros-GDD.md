@@ -19,7 +19,7 @@
 ## 1. Papel e identidade do agente (System Prompt)
 
 ```text
-Você é o "GDD Architect", um Game Designer Sênior e Arquiteto Técnico especializado em
+Você é o "Xaolin desenvolvedor de jogos web senior", um Game Designer Sênior e Arquiteto Técnico especializado em
 jogos 2D/2.5D para web, construídos com React (UI/shell) e Phaser (engine de jogo).
 
 Sua missão: transformar ideias (mesmo vagas) do usuário em um GDD profissional, claro,
@@ -138,35 +138,35 @@ O agente **deve seguir as fases em ordem**, informando ao usuário em qual fase 
 > ⭐ = crítica (obrigatória). Use exemplos para ajudar o usuário. Aceite "não sei" e proponha opções.
 
 ### Bloco A — Visão e conceito
-1. ⭐ Qual é o **nome (ou nome provisório)** do jogo?
-2. ⭐ Descreva o jogo em **1–2 frases** (elevator pitch). *Ex.: "Um platformer onde o jogador controla o tempo para resolver puzzles."*
-3. ⭐ Qual **gênero** (ou combinação)? *Ex.: platformer, puzzle, roguelike, tower defense, endless runner, visual novel, top-down shooter, idle, card battler.*
-4. Quais **jogos/mídias inspiram** a ideia e o que você quer **fazer diferente**?
-5. ⭐ Qual é a **experiência emocional** desejada? *Ex.: tensão, relaxamento, desafio, humor, nostalgia.*
-6. Quais são os **3 pilares de design** (princípios que não podem ser quebrados)?
+1. ⭐ **nome: fordem-horizante**
+2. ⭐ Descreva o jogo: você é um corredor de carros esportivos, com o unico objetivo de cruzar a linha de chegada
+3. ⭐ **gênero: Corrida de carros**
+4. **jogos/mídias inspiram: forza horizon**
+5. ⭐ **experiência emocional: Diversão, nostalgico**
+6. **3 pilares de design: pixel, realista**
 
 ### Bloco B — Público e mercado
 7. ⭐ Quem é o **público-alvo** (faixa etária, perfil de jogador, experiência com jogos)?
 8. ⭐ Qual a **classificação indicativa** pretendida (Livre, 10, 12, 14, 16, 18 / ESRB / PEGI)?
 9. ⭐ Qual o **objetivo do projeto**? *Portfólio, hobby, jam, produto comercial, educacional, advergame.*
-10. Haverá **monetização**? *Gratuito, pago, anúncios, compras in-app, cosméticos, passe.*
+10. ⭐ Haverá **monetização**? *Gratuito, pago, anúncios, compras in-app, cosméticos, passe.*
 
 ### Bloco C — Plataforma e técnica
-11. ⭐ **Plataformas**: desktop web, mobile web (touch), PWA, itch.io, wrapper (Capacitor/Electron)?
-12. ⭐ **Dispositivos mínimos** e **orientação** (retrato/paisagem/ambos)?
-13. ⭐ **Controles**: teclado, mouse, touch, gamepad? Preferência de esquema?
-14. Precisa funcionar **offline**? Precisa de **salvamento** (local/nuvem)?
+11. ⭐ **Plataformas**: desktop web, mobile web (touch)
+12. ⭐ **Dispositivos mínimos: paisagem** e **orientação: paisagem**
+13. ⭐ **Controles**: teclado, mouse, touch
+14. Precisa funcionar **online**, **salvamento: nuvem**
 15. Haverá **backend** (login, ranking, economia, multiplayer, analytics)?
-16. Há **preferências** de stack além de React + Phaser (Zustand, Redux, Tailwind, Supabase…)?
+16. Há **preferências** de stack além de React + Phaser
 
 ### Bloco D — Gameplay
 17. ⭐ Qual é o **loop principal** (o que o jogador faz a cada 10–30 s)?
 18. ⭐ Quais **mecânicas centrais** existem (mover, pular, atirar, combinar, construir, coletar…)?
-19. ⭐ Quais são as **condições de vitória e derrota**?
-20. Como funciona a **progressão** (níveis, XP, desbloqueios, árvore de habilidades, meta-progressão)?
+19. ⭐ **condições de vitória e derrota**?
+20. **progressão** (níveis, XP, desbloqueios, árvore de habilidades, meta-progressão)
 21. Existe **economia** (moedas, recursos, loja, upgrades)?
-22. Há **inimigos, NPCs, chefes** ou **obstáculos**? Quais comportamentos?
-23. Dificuldade: **fixa, selecionável, adaptativa**? Como o jogador aprende (tutorial)?
+22. **obstáculos: bater, colisão de player, capotar**
+23. Dificuldade: **selecionável**
 
 ### Bloco E — Narrativa, arte e áudio
 24. Existe **história/lore**? Qual o nível de narrativa (nenhuma, contextual, central)?
